@@ -56,10 +56,10 @@ let bedtime_stories_content_input = '';
 let explainInput = '';
 let explainPrompt = '';
 let lyricsInput = '';
-let modelQuiz = 'gemini-search';
-let modelQuizChoices = 'gpt-4o';
-let modelHomeWork = 'gemini';
-let modelExplain = 'gpt-4o';
+let modelQuiz = 'o-mini';
+let modelQuizChoices = 'o-mini';
+let modelHomeWork = 'o-mini';
+let modelExplain = 'o-mini';
 const GenAIApp = ({ user, source, grade, subject }) => {
     // **State Variables**
     const [isGeneratingTTS, setIsGeneratingTTS] = useState(false);
@@ -338,10 +338,6 @@ const GenAIApp = ({ user, source, grade, subject }) => {
             configurationSnapshot.forEach(doc => {
                 const data = doc.data();
                 console.log('Fully Array Data:', data);
-                console.log('Data:', data.temperature, data.top_p);
-                console.log('showGemini:', data.showGemini);
-                console.log('showOpenAI:', data.showOpenAI);
-                console.log('showGpt4Turbo:', data.showGpt4Turbo);
                 if (data.temperature !== undefined) {
                     setTemperature(data.temperature);
                 }
@@ -425,6 +421,18 @@ const GenAIApp = ({ user, source, grade, subject }) => {
                 }
                 if (data.fetchFromPublic !== undefined) {
                     setFetchFromPublic(data.fetchFromPublic);
+                }
+                if (data.modelQuiz !== undefined) {
+                    modelQuiz = data.modelQuiz;
+                }
+                if (data.modelQuizChoices !== undefined) {
+                    modelQuizChoices = data.modelQuizChoices;
+                }
+                if (data.modelHomeWork !== undefined) {
+                    modelHomeWork = data.modelHomeWork;
+                }
+                if (data.modelExplain !== undefined) {
+                    modelExplain = data.modelExplain;
                 }
             });
         } catch (error) {
