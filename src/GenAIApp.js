@@ -56,10 +56,10 @@ let bedtime_stories_content_input = '';
 let explainInput = '';
 let explainPrompt = '';
 let lyricsInput = '';
-let modelQuiz = 'o-mini';
-let modelQuizChoices = 'o-mini';
-let modelHomeWork = 'o-mini';
-let modelExplain = 'o-mini';
+let modelQuiz = 'o-mini-think';
+let modelQuizChoices = 'o-mini-think';
+let modelHomeWork = 'o-mini-think';
+let modelExplain = 'o-mini-think';
 const GenAIApp = ({ user, source, grade, subject }) => {
     // **State Variables**
     const [isGeneratingTTS, setIsGeneratingTTS] = useState(false);
