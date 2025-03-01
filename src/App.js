@@ -178,18 +178,6 @@ function App({ user, source, grade, subject }) {  // Add user prop
           case 'explain':
             explainPrompt = data.fullText;
             break;
-          case 'modelQuiz':
-            modelQuiz = data.fullText;
-            break;
-          case 'modelQuizChoices':
-            modelQuizChoices = data.fullText;
-            break;
-          case 'modelHomeWork':
-            modelHomeWork = data.fullText;
-            break;
-          case 'modelExplain':
-            modelExplain = data.fullText;
-            break;
           case 'advanced_features':
             advanced_features = data.fullText;
             break;
@@ -197,9 +185,33 @@ function App({ user, source, grade, subject }) {  // Add user prop
             break;
         }
       });
+      const configurationCollection = collection(db, 'public');
+      q = query(configurationCollection, where('setup', '==', 'genaiAdmin'));
+      const configurationSnapshot = await getDocs(q);
+      configurationSnapshot.forEach(doc => {
+          if (data.quizMultipleChoicesTemperture !== undefined) {
+              quizMultipleChoicesTemperture = data.quizMultipleChoicesTemperture;
+          }
+          if (data.quizMultipleChoicesTop_p !== undefined) {
+              quizMultipleChoicesTop_p = data.quizMultipleChoicesTop_p;
+          }
+          if (data.modelQuiz !== undefined) {
+              modelQuiz = data.modelQuiz;
+          }
+          if (data.modelQuizChoices !== undefined) {
+              modelQuizChoices = data.modelQuizChoices;
+          }
+          if (data.modelHomeWork !== undefined) {
+              modelHomeWork = data.modelHomeWork;
+          }
+          if (data.modelExplain !== undefined) {
+              modelExplain = data.modelExplain;
+          }
+      });
     } catch (error) {
       console.error("Error fetching texts: ", error);
     }
+
   };
 
   const handlehomeWork = async (message) => {
