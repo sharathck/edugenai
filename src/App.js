@@ -189,12 +189,7 @@ function App({ user, source, grade, subject }) {  // Add user prop
       q = query(configurationCollection, where('setup', '==', 'genaiAdmin'));
       const configurationSnapshot = await getDocs(q);
       configurationSnapshot.forEach(doc => {
-          if (data.quizMultipleChoicesTemperture !== undefined) {
-              quizMultipleChoicesTemperture = data.quizMultipleChoicesTemperture;
-          }
-          if (data.quizMultipleChoicesTop_p !== undefined) {
-              quizMultipleChoicesTop_p = data.quizMultipleChoicesTop_p;
-          }
+        const data = doc.data();
           if (data.modelQuiz !== undefined) {
               modelQuiz = data.modelQuiz;
           }
